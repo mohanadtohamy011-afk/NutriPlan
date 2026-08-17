@@ -4533,46 +4533,66 @@ function displayTodayFoodItems(items) {
     `Logged Items (${items.length})`;
 
 
-  if (items.length === 0) {
+ if (items.length === 0) {
 
-    if (clearFoodlogBtn) {
+  if (clearFoodlogBtn) {
+    clearFoodlogBtn.classList.add("hidden");
+  }
 
-      clearFoodlogBtn.classList.add(
-        "hidden"
-      );
+  loggedItemsList.innerHTML = `
 
-    }
+    <div class="text-center py-10">
 
+      <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gray-100 flex items-center justify-center">
+        <i class="fa-solid fa-utensils text-2xl text-gray-400"></i>
+      </div>
 
-    loggedItemsList.innerHTML = `
+      <p class="font-semibold text-gray-600 mb-1">
+        No food logged today
+      </p>
 
-      <div class="text-center py-10">
+      <p class="text-sm text-gray-400 mb-4">
+        Start tracking your nutrition by logging meals or products
+      </p>
 
-        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gray-100 flex items-center justify-center">
+      <div class="flex justify-center gap-2">
 
-          <i class="fa-solid fa-utensils text-2xl text-gray-400"></i>
+        <button
+          id="browse-recipes-btn"
+          class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-sm font-medium"
+        >
+          <i class="fa-solid fa-plus mr-1"></i>
+          Browse Recipes
+        </button>
 
-        </div>
-
-        <p class="font-semibold text-gray-600 mb-1">
-
-          No food logged today
-
-        </p>
-
-        <p class="text-sm text-gray-400">
-
-          Start tracking your nutrition by logging meals or products
-
-        </p>
+        <button
+          id="scan-product-btn"
+          class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium"
+        >
+          <i class="fa-solid fa-barcode mr-1"></i>
+          Scan Product
+        </button>
 
       </div>
 
-    `;
+    </div>
 
-    return;
+  `;
 
-  }
+  document
+    .getElementById("browse-recipes-btn")
+    ?.addEventListener("click", function () {
+      window.location.hash = "meals";
+    });
+
+  document
+    .getElementById("scan-product-btn")
+    ?.addEventListener("click", function () {
+      window.location.hash = "products";
+    });
+
+  return;
+}
 
 
   if (clearFoodlogBtn) {
@@ -6351,3 +6371,4 @@ document.addEventListener("DOMContentLoaded", () => {
   handleRoute();
 
 });
+
